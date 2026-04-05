@@ -1,0 +1,46 @@
+import {
+  Body, Controller, Delete, Get, Param, Patch, Post, Query, Req,
+} from '@nestjs/common';
+import { TransactionsService } from './transactions.service';
+import { CreateTransactionDto } from './dto/create-transaction.dto';
+import { UpdateTransactionDto } from './dto/update-transaction.dto';
+
+@Controller('transactions')
+export class TransactionsController {
+  constructor(private readonly transactionsService: TransactionsService) {}
+
+  @Get()
+  findAll(@Req() req, @Query() query: any) {
+    return this.transactionsService.findAll(req.user.authId, query);
+  }
+
+  @Get('summary')
+  getSummary(
+    @Req() req,
+    @Query('type') type: string,
+    @Query('startDate') startDate?: string,
+    @Query('endDate') endDate?: string,
+  ) {
+    return this.transactionsService.getSummary(req.user.authId, type, startDate, endDate);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string, @Req() req) {
+    return this.transactionsService.findOne(id, req.user.authId);
+  }
+
+  @Post()
+  create(@Req() req, @Body() dto: CreateTransactionDto) {
+    return this.transactionsService.create(req.user.authId, dto);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() dto: UpdateTransactionDto, @Req() req) {
+    return this.transactionsService.update(id, dto, req.user.authId);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string, @Req() req) {
+    return this.transactionsService.remove(id, req.user.authId);
+  }
+}
