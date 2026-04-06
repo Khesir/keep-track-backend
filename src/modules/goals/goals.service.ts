@@ -4,7 +4,7 @@ import { Model, Types } from 'mongoose';
 import { Goal, GoalDocument } from '../../schemas/goal.schema';
 import { CreateGoalDto } from './dto/create-goal.dto';
 import { UpdateGoalDto } from './dto/update-goal.dto';
-import { Transaction, TransactionDocument } from 'src/schemas/transaction.schema';
+import { Transaction, TransactionDocument } from '../../schemas/transaction.schema';
 import { ContributeGoalDto } from './dto/contribute-goal.dto';
 
 @Injectable()

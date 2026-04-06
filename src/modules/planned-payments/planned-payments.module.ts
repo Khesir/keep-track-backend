@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PlannedPaymentsController } from './planned-payments.controller';
 import { PlannedPaymentsService } from './planned-payments.service';
-import { PlannedPayment, PlannedPaymentSchema } from 'src/schemas/planned-payment.schema';
-import { Transaction, TransactionSchema } from 'src/schemas/transaction.schema';
+import { PlannedPayment, PlannedPaymentSchema } from '../../schemas/planned-payment.schema';
+import { Transaction, TransactionSchema } from '../../schemas/transaction.schema';
 
 @Module({
   imports: [

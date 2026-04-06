@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { PlannedPayment, PlannedPaymentDocument } from 'src/schemas/planned-payment.schema';
-import { Transaction, TransactionDocument } from 'src/schemas/transaction.schema';
+import { PlannedPayment, PlannedPaymentDocument } from '../../schemas/planned-payment.schema';
+import { Transaction, TransactionDocument } from '../../schemas/transaction.schema';
 import { CreatePlannedPaymentDto } from './dto/create-planned-payment.dto';
 import { UpdatePlannedPaymentDto } from './dto/update-planned-payment.dto';
 import { PayPlannedPaymentDto } from './dto/pay-planned-payment.dto';

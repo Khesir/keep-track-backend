@@ -5,8 +5,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
-import { RefreshToken, RefreshTokenSchema } from 'src/schemas/refresh-token.schema';
-import { User, UserSchema } from 'src/schemas/user.schema';
+import { RefreshToken, RefreshTokenSchema } from '../../schemas/refresh-token.schema';
+import { User, UserSchema } from '../../schemas/user.schema';
 
 @Module({
   imports: [

@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { GoalsController } from './goals.controller';
 import { GoalsService } from './goals.service';
 import { Goal, GoalSchema } from '../../schemas/goal.schema';
-import { Transaction, TransactionSchema } from 'src/schemas/transaction.schema';
+import { Transaction, TransactionSchema } from '../../schemas/transaction.schema';
 
 @Module({
   imports: [

@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { PomodoroSession, PomodoroSessionDocument } from 'src/schemas/pomodoro-session.schema';
+import { PomodoroSession, PomodoroSessionDocument } from '../../schemas/pomodoro-session.schema';
 import { CreatePomodoroSessionDto } from './dto/create-pomodoro-session.dto';
 
 @Injectable()

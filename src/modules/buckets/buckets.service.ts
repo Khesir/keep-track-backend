@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { CreateBucketDto } from './dto/create-bucket.dto';
 import { UpdateBucketDto } from './dto/update-bucket.dto';
-import { Bucket, BucketDocument } from 'src/schemas/bucket.schema';
+import { Bucket, BucketDocument } from '../../schemas/bucket.schema';
 
 @Injectable()
 export class BucketsService {

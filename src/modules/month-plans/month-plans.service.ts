@@ -1,8 +1,8 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { MonthPlan, MonthPlanDocument } from 'src/schemas/month-plan.schema';
-import { Budget, BudgetDocument } from 'src/schemas/budget.schema';
+import { MonthPlan, MonthPlanDocument } from '../../schemas/month-plan.schema';
+import { Budget, BudgetDocument } from '../../schemas/budget.schema';
 import { CreateMonthPlanDto } from './dto/create-month-plan.dto';
 import { UpdateMonthPlanDto } from './dto/update-month-plan.dto';
 

@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
-import { Account, AccountDocument } from 'src/schemas/account.schema';
+import { Account, AccountDocument } from '../../schemas/account.schema';
 
 @Injectable()
 export class AccountsService {

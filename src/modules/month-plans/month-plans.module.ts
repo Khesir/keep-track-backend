@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MonthPlansController } from './month-plans.controller';
 import { MonthPlansService } from './month-plans.service';
-import { MonthPlan, MonthPlanSchema } from 'src/schemas/month-plan.schema';
-import { Budget, BudgetSchema } from 'src/schemas/budget.schema';
+import { MonthPlan, MonthPlanSchema } from '../../schemas/month-plan.schema';
+import { Budget, BudgetSchema } from '../../schemas/budget.schema';
 
 @Module({
   imports: [

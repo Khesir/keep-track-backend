@@ -5,7 +5,7 @@ import { CreateBudgetDto } from './dto/create-budget.dto';
 import { UpdateBudgetDto } from './dto/update-budget.dto';
 import { BudgetCategoryDto, UpdateBudgetCategoryDto } from './dto/budget-category.dto';
 import { CreateBudgetCategoryFlatDto } from './dto/create-budget-category-flat.dto';
-import { Budget, BudgetDocument } from 'src/schemas/budget.schema';
+import { Budget, BudgetDocument } from '../../schemas/budget.schema';
 
 @Injectable()
 export class BudgetsService {

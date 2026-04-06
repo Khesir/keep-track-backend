@@ -3,8 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { CreateDebtDto } from './dto/create-debt.dto';
 import { UpdateDebtDto } from './dto/update-debt.dto';
-import { Debt, DebtDocument } from 'src/schemas/debt.schema';
-import { Transaction, TransactionDocument } from 'src/schemas/transaction.schema';
+import { Debt, DebtDocument } from '../../schemas/debt.schema';
+import { Transaction, TransactionDocument } from '../../schemas/transaction.schema';
 import { PayDebtDto } from './dto/pay-debt.dto';
 
 @Injectable()

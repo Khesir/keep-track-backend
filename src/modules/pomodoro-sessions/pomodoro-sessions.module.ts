@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PomodoroSessionsController } from './pomodoro-sessions.controller';
 import { PomodoroSessionsService } from './pomodoro-sessions.service';
-import { PomodoroSession, PomodoroSessionSchema } from 'src/schemas/pomodoro-session.schema';
+import { PomodoroSession, PomodoroSessionSchema } from '../../schemas/pomodoro-session.schema';
 
 @Module({
   imports: [
