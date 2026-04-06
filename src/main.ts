@@ -86,7 +86,9 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 };
 
 // ── Local dev entry point (called by nest start) ──────────────────────────────
-bootstrap().catch((err) => {
-  Logger.error('Bootstrap failed', err);
-  process.exit(1);
-});
+if (process.env.NODE_ENV !== 'production') {
+  bootstrap().catch((err) => {
+    Logger.error('Bootstrap failed', err);
+    process.exit(1);
+  });
+}
