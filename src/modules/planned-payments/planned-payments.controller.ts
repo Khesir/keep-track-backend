@@ -62,4 +62,9 @@ export class PlannedPaymentsController {
   cancel(@Param('id') id: string, @Req() req) {
     return this.plannedPaymentsService.cancel(id, req.user.authId);
   }
+
+  @Post(':id/skip')
+  skip(@Param('id') id: string, @Req() req) {
+    return this.plannedPaymentsService.skip(id, req.user.authId);
+  }
 }

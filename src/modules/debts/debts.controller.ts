@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Req } from '@
 import { DebtsService } from './debts.service';
 import { CreateDebtDto } from './dto/create-debt.dto';
 import { UpdateDebtDto } from './dto/update-debt.dto';
+import { PayDebtDto } from './dto/pay-debt.dto';
 
 @Controller('debts')
 export class DebtsController {
@@ -35,5 +36,10 @@ export class DebtsController {
   @Post(':id/settle')
   settle(@Param('id') id: string, @Req() req) {
     return this.debtsService.settle(id, req.user.authId);
+  }
+
+  @Post(':id/pay')
+  pay(@Param('id') id: string, @Body() dto: PayDebtDto, @Req() req) {
+    return this.debtsService.pay(id, dto, req.user.authId);
   }
 }

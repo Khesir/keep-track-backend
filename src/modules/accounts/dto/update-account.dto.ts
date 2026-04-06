@@ -11,4 +11,5 @@ export class UpdateAccountDto {
   @IsOptional() @IsString() bankAccountNumber?: string;
   @IsOptional() @IsBoolean() isActive?: boolean;
   @IsOptional() @IsBoolean() isArchived?: boolean;
+  @IsOptional() @IsString() imageUrl?: string;
 }

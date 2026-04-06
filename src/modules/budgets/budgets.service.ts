@@ -18,11 +18,13 @@ export class BudgetsService {
     if (month) filter.month = month;
     if (status) filter.status = status;
     if (budgetType) filter.budgetType = budgetType;
-    return this.budgetModel.find(filter);
+    return this.budgetModel.find(filter).populate('categories.financeCategoryId');
   }
 
   async findOne(id: string, authId: string) {
-    const doc = await this.budgetModel.findOne({ _id: id, userId: new Types.ObjectId(authId) });
+    const doc = await this.budgetModel
+      .findOne({ _id: id, userId: new Types.ObjectId(authId) })
+      .populate('categories.financeCategoryId');
     if (!doc) throw new NotFoundException();
     return doc;
   }

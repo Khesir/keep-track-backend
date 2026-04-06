@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Req } from '@
 import { GoalsService } from './goals.service';
 import { CreateGoalDto } from './dto/create-goal.dto';
 import { UpdateGoalDto } from './dto/update-goal.dto';
+import { ContributeGoalDto } from './dto/contribute-goal.dto';
 
 @Controller('goals')
 export class GoalsController {
@@ -35,5 +36,10 @@ export class GoalsController {
   @Post(':id/complete')
   complete(@Param('id') id: string, @Req() req) {
     return this.goalsService.complete(id, req.user.authId);
+  }
+
+  @Post(':id/contribute')
+  contribute(@Param('id') id: string, @Body() dto: ContributeGoalDto, @Req() req) {
+    return this.goalsService.contribute(id, dto, req.user.authId);
   }
 }

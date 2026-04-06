@@ -59,6 +59,17 @@ BudgetSchema.set('toJSON', {
     ret.id = ret._id;
     delete ret._id;
     delete ret.__v;
+
+    // Normalise embedded category subdocuments
+    if (Array.isArray(ret.categories)) {
+      ret.categories = ret.categories.map((cat: any) => {
+        const c = { ...cat };
+        c.id = c._id;
+        delete c._id;
+        return c;
+      });
+    }
+
     return ret;
   },
 });

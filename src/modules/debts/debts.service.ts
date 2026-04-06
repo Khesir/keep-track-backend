@@ -4,10 +4,15 @@ import { Model, Types } from 'mongoose';
 import { CreateDebtDto } from './dto/create-debt.dto';
 import { UpdateDebtDto } from './dto/update-debt.dto';
 import { Debt, DebtDocument } from 'src/schemas/debt.schema';
+import { Transaction, TransactionDocument } from 'src/schemas/transaction.schema';
+import { PayDebtDto } from './dto/pay-debt.dto';
 
 @Injectable()
 export class DebtsService {
-  constructor(@InjectModel(Debt.name) private debtModel: Model<DebtDocument>) {}
+  constructor(
+    @InjectModel(Debt.name) private debtModel: Model<DebtDocument>,
+    @InjectModel(Transaction.name) private transactionModel: Model<TransactionDocument>,
+  ) {}
 
   findAll(authId: string, type?: string, status?: string) {
     const filter: any = { userId: new Types.ObjectId(authId) };
@@ -53,6 +58,40 @@ export class DebtsService {
       { new: true },
     );
     if (!doc) throw new NotFoundException();
+    return doc;
+  }
+
+  async pay(id: string, dto: PayDebtDto, authId: string) {
+    const userId = new Types.ObjectId(authId);
+    const debt = await this.debtModel.findOne({ _id: id, userId });
+    if (!debt) throw new NotFoundException();
+
+    const newRemaining = Math.max(0, debt.remainingAmount - dto.amount);
+    const isSettled = newRemaining === 0;
+
+    // Create transaction
+    await this.transactionModel.create({
+      userId,
+      accountId: dto.accountId ? new Types.ObjectId(dto.accountId) : (debt.accountId ?? null),
+      amount: dto.amount,
+      type: debt.type === 'lending' ? 'income' : 'expense',
+      description: debt.type === 'lending'
+        ? `Received from ${debt.personName}`
+        : `Paid to ${debt.personName}`,
+      date: new Date(),
+      notes: dto.notes ?? null,
+      fee: dto.fee ?? 0,
+      debtId: debt._id,
+    });
+
+    const doc = await this.debtModel.findByIdAndUpdate(
+      id,
+      {
+        remainingAmount: newRemaining,
+        ...(isSettled ? { status: 'settled', settledAt: new Date() } : {}),
+      },
+      { new: true },
+    );
     return doc;
   }
 }

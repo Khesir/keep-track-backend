@@ -81,11 +81,14 @@ export class AuthService {
     const user = await this.userModel.findOneAndUpdate(
       { email: payload.email },
       {
+        $set: {
+          // Always refresh Google profile data on every sign-in
+          photoUrl: payload.picture ?? null,
+          googleId: payload.sub,
+        },
         $setOnInsert: {
           email: payload.email,
           displayName: payload.name ?? null,
-          photoUrl: payload.picture ?? null,
-          googleId: payload.sub,
           passwordHash: null,
         },
       },
@@ -178,6 +181,8 @@ export class AuthService {
         id: user._id,
         email: user.email,
         displayName: user.displayName ?? null,
+        photoUrl: user.photoUrl ?? null,
+        isAdmin: user.isAdmin ?? false,
       },
     };
   }

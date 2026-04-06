@@ -134,4 +134,18 @@ export class PlannedPaymentsService {
     if (!doc) throw new NotFoundException();
     return doc;
   }
+
+  async skip(id: string, authId: string) {
+    const payment = await this.plannedPaymentModel.findOne({ _id: id, userId: new Types.ObjectId(authId) });
+    if (!payment) throw new NotFoundException();
+    if (payment.frequency === 'oneTime') return payment; // can't skip one-time
+
+    const nextDate = advanceDate(new Date(payment.nextPaymentDate ?? new Date()), payment.frequency);
+    const doc = await this.plannedPaymentModel.findByIdAndUpdate(
+      id,
+      { nextPaymentDate: nextDate },
+      { new: true },
+    );
+    return doc;
+  }
 }

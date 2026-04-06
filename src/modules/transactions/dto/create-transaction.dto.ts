@@ -6,7 +6,7 @@ export class CreateTransactionDto {
   @IsOptional() @IsString() financeCategoryId?: string;
   @IsNumber() amount: number;
   @IsEnum(['income', 'expense', 'transfer']) type: string;
-  @IsString() description: string;
+  @IsOptional() @IsString() description?: string;
   @IsDateString() date: string;
   @IsOptional() @IsString() notes?: string;
   @IsOptional() @IsNumber() fee?: number;

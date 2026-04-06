@@ -8,4 +8,5 @@ export class CreateAccountDto {
   @IsOptional() @IsString() colorHex?: string;
   @IsOptional() @IsNumber() iconCodePoint?: number;
   @IsOptional() @IsString() bankAccountNumber?: string;
+  @IsOptional() @IsString() imageUrl?: string;
 }

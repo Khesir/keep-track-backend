@@ -34,6 +34,9 @@ export class Account {
 
   @Prop({ default: false, index: true })
   isArchived: boolean;
+
+  @Prop({ default: null })
+  imageUrl: string | null;
 }
 
 export const AccountSchema = SchemaFactory.createForClass(Account);
