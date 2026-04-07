@@ -41,6 +41,11 @@ export class MonthPlansController {
     return this.monthPlansService.update(id, dto, req.user.authId);
   }
 
+  @Post(':id/budgets')
+  addBudget(@Param('id') id: string, @Body('budgetId') budgetId: string, @Req() req) {
+    return this.monthPlansService.addBudget(id, budgetId, req.user.authId);
+  }
+
   @Delete(':id')
   remove(
     @Param('id') id: string,

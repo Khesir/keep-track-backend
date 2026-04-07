@@ -57,14 +57,27 @@ export class MonthPlansService {
   }
 
   async remove(id: string, authId: string, includeBudgets = false) {
-    const doc = await this.monthPlanModel.findOne({ _id: id, userId: new Types.ObjectId(authId) });
+    const userId = new Types.ObjectId(authId);
+    const doc = await this.monthPlanModel.findOne({ _id: id, userId });
     if (!doc) throw new NotFoundException();
 
-    if (includeBudgets && doc.budgetIds?.length) {
-      await this.budgetModel.deleteMany({ _id: { $in: doc.budgetIds } });
+    if (includeBudgets) {
+      // Delete all budgets for this month by month key — more reliable than
+      // relying on budgetIds which may lag if a budget was created outside this plan
+      await this.budgetModel.deleteMany({ userId, month: doc.month });
     }
 
     await doc.deleteOne();
+  }
+
+  async addBudget(id: string, budgetId: string, authId: string) {
+    const doc = await this.monthPlanModel.findOneAndUpdate(
+      { _id: id, userId: new Types.ObjectId(authId) },
+      { $addToSet: { budgetIds: new Types.ObjectId(budgetId) } },
+      { new: true },
+    );
+    if (!doc) throw new NotFoundException();
+    return doc;
   }
 
   async copy(sourceMonth: string, targetMonth: string, authId: string) {
