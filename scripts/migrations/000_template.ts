@@ -5,6 +5,14 @@
  * Safe to re-run: <yes / no>
  */
 
+/**
+ * Migrations are for
+ * - Seeding initial data (admin user, default categories...)
+ * - Adding/removing indexes on existing data
+ * - Renaming or backfilling fields on existing documents
+ * - Data transformations
+ */
+
 import type { MigrationDatabase } from './types';
 
 // Must be unique — the runner uses this as the primary key in the `migrations` collection.
