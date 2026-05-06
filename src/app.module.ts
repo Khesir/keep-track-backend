@@ -27,6 +27,7 @@ let cachedConnection: any = null;
     MongooseModule.forRootAsync({
       useFactory: () => ({
         uri: process.env.MONGODB_URI,
+        autoIndex: false,
         connectionFactory: (connection) => {
           if (cachedConnection) return cachedConnection;
           cachedConnection = connection;
