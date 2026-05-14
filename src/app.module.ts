@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { APP_GUARD } from '@nestjs/core';
 
-import { AccountsModule } from './modules/accounts/accounts.module';
+import { SavingsModule } from './modules/savings/savings.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtAuthGuard } from './modules/auth/jwt-auth.guard';
 import { BucketsModule } from './modules/buckets/buckets.module';
@@ -37,7 +37,7 @@ let cachedConnection: any = null;
     }),
     AuthModule,
     UsersModule,
-    AccountsModule,
+    SavingsModule,
     TransactionsModule,
     FinanceCategoriesModule,
     BudgetsModule,
